@@ -10,6 +10,8 @@
       var COLS=26, ROWS=26;
       //IDs
       var EMPTY=0, SNAKE=1, FRUIT=2;
+      //Directions
+      var LEFT=0, UP=1, RIGHT=2, DOWN=3;
       
       var grid = {
         width: null,
@@ -17,6 +19,8 @@
         _grid: null,
         
         init: function(d, c, r){
+          this.width = c;
+          this.height = r;
           this._grid = [];
           for (var x=0; x < c; x++) {
             this._grid.push([]);
@@ -63,11 +67,11 @@
             }
           }
         }
-        var randPos = empty[Math.floor(Math.random()*empty.length)];
-        grid.set(FRUIT, randPos.x, randPos.y);
+        var randpos = empty[Math.floor(Math.random()*empty.length)];
+        grid.set(FRUIT, randpos.x, randpos.y);
       }
       // Game objects
-      var canvas, ctx. keystate, frames;
+      var canvas, ctx, keystate, frames;
       
       function main(){
         canvas = document.createElement("canvas");
@@ -85,7 +89,6 @@
       
       function init(){
         grid.init(EMPTY, COLS, ROWS);
-        
         var sp = {x:Math.floor(COLS/2), y:ROWS-1};
         snake.init(UP, sp.x, sp.y);
         grid.set(SNAKE, sp.x, sp.y);
