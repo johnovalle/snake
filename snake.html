@@ -55,10 +55,33 @@
       }
       
       function setFood() {
-        
+        var empty = [];
+        for (var x=0; x < grid.width; x++) {
+          for (var y=0; y < grid.height; y++) {
+            if (grid.get(x, y) === EMPTY) {
+              empty.push({x:x, y:y});
+            }
+          }
+        }
+        var randPos = empty[Math.floor(Math.random()*empty.length)];
+        grid.set(FRUIT, randPos.x, randPos.y);
       }
+      // Game objects
+      var canvas, ctx. keystate, frames;
       
-      function main(){}
+      function main(){
+        canvas = document.createElement("canvas");
+        canvas.width = COLS*20;
+        canvas.height = ROWS*20;
+        ctx = canvas.getContext("2d");
+        document.body.appendChild(canvas);
+        
+        frames = 0;
+        keystate = {};
+        
+        init();
+        loop();
+      }
       
       function init(){}
       
